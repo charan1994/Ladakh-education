@@ -1,50 +1,125 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- todo: need to move away from CDN -->
+<!-- todo: add a header across the pages for navigation like the explore glosarry pages has no way to go back to home page -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/silkroad.css">
 <h1>TOPIC: SILK ROAD</h1>
-<div class="card-group">
-    <div class="card box-container">
-        <img src="images/explore.jpg" class="card-img" alt="explore image">
-        <div class="card-img-overlay">
+<div class="card-group d-flex justify-content-center">
+    <div class="card border-0 col-md-2">
+        <img src="images/explore.svg" class="card-img-top" alt="explore image">
+        <div class="card-body">
           <h2 class="card-title">Explore</h2>
-          <a href="./flash_cards/index.html"><button type="button" class="btn btn-light pull-right">See 5 Activities</button></a>
+          <a href="./flash_cards/index.html"><button type="button" class="btn btn-light pull-right">See 1 Activity</button></a>
         </div>
     </div>
-    <div class="card">
-        <img src="images/read.jpg" class="card-img" alt="read image">
-        <div class="card-img-overlay">
+    <div class="card border-0 col-md-2">
+        <img src="images/read.svg" class="card-img-top" alt="read image">
+        <div class="card-body">
           <h2 class="card-title">Read</h2>
-          <a href=""><button type="button" class="btn btn-light pull-right">See 3 Activities</button></a>
+          <button type="button" class="btn btn-light pull-right" data-toggle="modal" data-target="#readModal">See 2 Activities</button>
+          <div class="modal" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Pick a topic to read</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <a href="pdf/es5/web/viewer.html?file=geography.pdf"><p>Read about the geography of silk road</p></a>
+                  <a href="pdf/es5/web/viewer.html?file=exchange.pdf"><p>Read about the exchange of goods and indeas along the silk road</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-    <div class="card">
-        <img src="images/create.jpg" class="card-img" alt="create image">
-        <div class="card-img-overlay">
+    <div class="card border-0 col-md-2">
+        <img src="images/create.svg" class="card-img-top" alt="create image">
+        <div class="card-body">
           <h2 class="card-title">Create</h2>
-          <a href=""><button type="button" class="btn btn-light pull-right">See 3 Activities</button></a>
+          <button type="button" class="btn btn-light pull-right" data-toggle="modal" data-target="#createModal">See 1 Activity</button>
+          <div class="modal" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Create activity</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Draw or create the silk road map, identify goods traded in each region and name a mode of transportation for each region.</p>
+                  <br />
+                  <br />
+                  <br />
+                  <i><p>Ask your teacher if you can have an exhibition of all your classmate's work displayed and ask questions you have to each other during the exhibition</p></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </div>
-<div class="card-group">
-    <div class="card">
-        <img src="images/watch.jpg" class="card-img" alt="watch image">
-        <div class="card-img-overlay">
+<div class="card-group d-flex justify-content-center">
+    <div class="card border-0 col-md-2">
+        <img src="images/watch.svg" class="card-img-top" alt="watch image">
+        <div class="card-body">
           <h2 class="card-title">Watch</h2>
-          <a href=""><button type="button" class="btn btn-light pull-right">See 5 Activities</button></a>
+          <button type="button" class="btn btn-light pull-right" data-toggle="modal" data-target="#watchModal">See 2 Activities</button>
+          <div class="modal" id="watchModal" tabindex="-1" role="dialog" aria-labelledby="watchModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Watch activity</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- todo: need to figure out how media is being served and also add links of media to the media folder -->
+                  <a href=""><p>Khan academy</p></a>
+                  <a href=""><p>TED</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-    <div class="card">
-        <img src="images/wonder.jpg" class="card-img" alt="wonder image">
-        <div class="card-img-overlay">
+    <div class="card border-0 col-md-2">
+        <img src="images/wonder.svg" class="card-img-top" alt="wonder image">
+        <div class="card-body">
           <h2 class="card-title">Wonder</h2>
-          <a href=""><button type="button" class="btn btn-light pull-right">See 3 Activities</button></a>
+          <button type="button" class="btn btn-light pull-right" data-toggle="modal" data-target="#wonderModal">See 1 Activity</button>
+          <div class="modal" id="wonderModal" tabindex="-1" role="dialog" aria-labelledby="wonderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Wonder activity</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <b><p>Write an essay of up to 500 words.</p></b>
+                  <br />
+                  <br />
+                  <br />
+                  <p>Imagine how your life would have been different without the Silk Road. What goods and services would be hard to find if it was not for the silk road? Would it impact your daily life? Why or why not? For this activity I would encourage you to walk around your neighborhood/locality and identify all the different goods that you might or might not have access to. This will help you think how certain goods and services in your community are available and wonder how life might have been different without them.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-    <div class="card">
-        <img src="images/play.jpg" class="card-img" alt="play image">
-        <div class="card-img-overlay">
+    <!-- todo: disabled play for now, figure out if we can recreate the song thing present in the document here https://www.amnh.org/explore/ology/anthropology/sounds-of-the-silk-road2/play-music -->
+    <!-- <div class="card border-0 col-md-2">
+        <img src="images/play.svg" class="card-img-top" alt="play image">
+        <div class="card-body">
           <h2 class="card-title">Play</h2>
           <a href=""><button type="button" class="btn btn-light pull-right">See 3 Activities</button></a>
         </div>
-    </div>
+    </div> -->
   </div>

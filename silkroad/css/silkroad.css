@@ -13,4 +13,8 @@ button{
     display: table-cell;
     float: right !important;
     vertical-align: bottom;
+    margin-top: 1em;
+}
+.card{
+    margin: 2em;
 }
