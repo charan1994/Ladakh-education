@@ -82,6 +82,7 @@ function choicesMade() {
 	let count = monogatari.storage('bff') + monogatari.storage('dog') + monogatari.storage('chief')
 				+ monogatari.storage('moneylender') + monogatari.storage('adventurer') + monogatari.storage('cartographer')
 				+ monogatari.storage('plaguedoc')+ monogatari.storage('merchant')
+	console.log(count)
 	return count >= 4
 }
 
@@ -97,7 +98,8 @@ monogatari.assets ('scenes', {
 	'homevillage': 'homevillage.jpg',
 	'lakesights': 'lakesights.jpg',
 	'oasis': 'oasis.jpg',
-	'snakesindesert': 'snakesindesert.jpg'
+	'snakesindesert': 'snakesindesert.jpg',
+	'cave': 'cave.jpg'
 });
 
 // Define the Characters
@@ -234,13 +236,23 @@ monogatari.characters ({
         },
 		default_expression: 'normal',
 	},
+	'thief': {
+		name: 'thief',
+		color: 'ff0000',
+		sprites: {
+            normal: 'thief.png',
+        },
+        expressions: {
+            normal: 'expressions/thief.png',
+        },
+		default_expression: 'normal',
+	},
 });
 
 monogatari.script ({
 	// The game starts here.
 	'Start': [
 		'show scene silkroad with fadeIn',
-		'show notification Welcome',
 		{
 			'Input': {
 				'Text': 'What is your name?',
@@ -266,7 +278,7 @@ monogatari.script ({
 			}
 		},
 		'Hi {{player.name}}!! Welcome to Silk Road, here you will learn how our ancestors in the past used to navigate the treacherous roads. Can you successfully cross it and seal a deal with China? Only time will tell!',
-		'show scene nightfall',
+		'show scene nightfall with fadeIn',
 		'As you open your eyes, a desolate path stretches out in front of you, winds howling menacingly, whipping your scarf around. The temperature is -3 degrees and it is a chilling night. You remember your parent, making the trip to beyond the mountains, only to never return. "Stay far away from the paths" they warned. "It will do you no good to follow us". You sigh, unable to fulfil even their last request. ',
 		{
 			'Choice': {
@@ -299,6 +311,9 @@ monogatari.script ({
 		'BFF knew what you were thinking, the minute they set foot on the road. He sighed.',
 		'bff Alright. Meet me tomorrow night, by the tree. I will gather some people who might be helpful to you. And I am coming as well',
 		'You breathed a sigh of relief. Atleast they weren\'t going to stop you. Although you didn\'t want them accompanying you on this potential suicide mission. Oh well. That\'s a problem for future me! For now let\'s focus on getting ready for the trip!',
+		'jump make-choices'
+	],
+	'make-choices': [
 		'show scene meetinglocation with fadeIn',
 		'show character you normal at center with fadeIn',
 		'you Welcome guys, thanks for coming here on such short notice',
@@ -331,6 +346,12 @@ monogatari.script ({
 		'merchant I don\'t think it is profitable to risk my life, but if you need to know, there is nobody in the village who can better sell your goods!',
 		'hide character merchant with fadeOut',
 		'show character chief normal at right with fadeIn',
+		function () {
+			this.storage().adventurer = false
+			this.storage().cartographer = false
+			this.storage().plaguedoc = false
+			this.storage().merchant = false
+		},
 		{
 			'Choice': {
 				'Dialog': 'Do you want to take village chief with you?',
@@ -342,7 +363,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().chief = false
+					}
 				}
 			}
 		},
@@ -359,7 +382,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().bff = false
+					}
 				}
 			}
 		},
@@ -376,7 +401,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().dog = false
+					}
 				}
 			}
 		},
@@ -393,7 +420,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().moneylender = false
+					}
 				}
 			}
 		},
@@ -417,7 +446,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().adventurer = false
+					}
 				}
 			}
 		},
@@ -441,7 +472,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().cartographer = false
+					}
 				}
 			}
 		},
@@ -465,7 +498,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().plaguedoc = false
+					}
 				}
 			}
 		},
@@ -489,7 +524,9 @@ monogatari.script ({
 				},
 				'No': {
 					'Text': 'No',
-					'Do': 'Okay!'
+					'Do': function () {
+						this.storage().merchant = false
+					}
 				}
 			}
 		},
@@ -555,5 +592,110 @@ monogatari.script ({
 			'4': 'jump quiz-1',
 		}},
 	],
+	'adventure-continues': [
+		'show scene nightfall with fadeIn',
+		'Nightfall arrives: You look at the beautiful night sky, the wind whispering gently in your ear, the stars glittering, you sigh, content. You wonder why everyone was so afraid of the Silk route, it was beautiful.',
+		'show scene cave with fadeIn',
+		'show character you normal at center with fadeIn',
+		'You gather around with your members, looking for a suitable place to spend the night. You notice a source of light in the distance, and decide to follow it. You come to a cave (scene) that seems to be unoccupied. You decide to gather some firewood to create light to scare wild animals away. Finally, everyone is comfortable and well settled.',
+		'Suddenly, from the distance, you hear a muffled sound. Wait, sound? We were the only ones supposed to be on the Silk road!! With increasing trepidation, you try to listen as carefully as possible. You hear the sound of metal. It\'s too dangerous to run, the cave is too small to hide, you can do nothing but wait for the unknown assailants to enter, and hopefully not be hostile.',
+		'thief Give us everything you have!',
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().adventurer;
+			},
+			'True': 'show character adventurer normal at right with fadeIn',
+			'False': 'jump bad-ending-1'
+		}},
+		'You stare at your group members, startled. You were not aware that this part of the Silk road was infested by bandits. Fortunately, you decided to not take a chance with the safety of your members and brought the adventurer along with you. The adventurer quickly and efficiently dispatches the bandits, and you decide it best to move to a different resting area, for fear of attracting more dangerous animals or the bandits\' comrades. ',
+		'show scene colddesert with fadeIn',
+		'show character you normal at center with fadeIn',
+		'After a few days of travel, your group members finally reach the vast, cold desert, where the caravan trails end. You look helplessly at the open desert, being unable to determine which way would be the correct way to go.',
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().cartographer;
+			},
+			'True':  'show character cartographer normal at right with fadeIn',
+			'False': 'jump bad-ending-2'
+		}},
+		'However, the timid cartographer, starts to guide your group expertly through the sand dunes. You look on, relieved that you had the foresight to include the cartographer in your group. Almost no time seems to pass, before the sandy soils give way to firmer ground, and you begin to see the end in sight. ',
+		'show scene snakesindesert with fadeIn',
+		'show character you normal at center with fadeIn',
+		'Excited and energized, your group makes way across the shrubbery. In your haste, you fail to notice a nest of rattlesnakes on the ground, that you accidentally step into. It hapens so fast, there is almost no time to react, you feel yourself frothing at the mouth, and convulsing uncontrollably.',
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().plaguedoc;
+			},
+			'True': 'show character plaguedoc normal at right with fadeIn',
+			'False': 'jump bad-ending-3'
+		}},
+		'With a startling speed, the doctor whips out his bag, and applies a salve on the infected area. You feel your eyelids drooping, however under the doctor\'s expert care, you are no longer by death\'s door. Your group rests for a while, to give you a chance to regain your strength, before finally reaching the end of the road.',
+		'show scene chinesevillage with fadeIn',
+		'In the distance, you see bells, bamboo scaffolding and slanted roofs, bearing distinct resemblance to architecture of the Wei-Lun dynasty. You had made it. You successfully reached China. You had crossed the silk road.',
+		'show character you normal at center with fadeIn',
+		'Your group cheers. Tired, you decide to spend the night and then negotiate for prices of your goods the next day. Your group remains unaware of the greedy gleam that enters the eyes of the Chinese merchants, who have accurately discerned the level of your expertise with barely a glance. They simultaneously decide the night prior as to what prices they will buy your goods at, so that you sell at a disadvantage no matter who you turn to.',
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().merchant;
+			},
+			'True': 'show character merchant normal at right with fadeIn',
+			'False': 'jump bad-ending-4'
+		}},
+		'The next day, your group wanders the markets, trying to sell your goods. The Chinese traders give you exorbitant prices, however the merchant laughs. "I am a merchant, young sirs" he curtsies exaggeratedly. "You might be able to fool a normal group, and I certainly applaud your business acumen for that, but do not try these cheap tricks on me" The merchant, in his element, drives a hard bargain, and makes sure to get your group an appropriate price.',
+		'show scene homevillage with fadeIn',
+		'show character you normal at center with fadeIn',
+		'You look in awe at all the food the merchant managed to buy. This would last your village until the summer. You were overjoyed.  Your group travels back to the village, in a jubilant mood, where the villagers are waiting. You did it. You saved them all.'
+	],
+	'bad-ending-1': [
+		'You look in despair at what can only be a bandit, wielding a dagger and threatening your group. None of you are proficient in combat, you did not choose the adventurer to travel with you. With a sinking heart you can only hope he leaves you alive. You can still return to your village. Your group offers all your food, silk and goods to the bandit. You turn to leave, when',
+		'STAB',
+		'Your hands instinctively clutch at the dagger protruding from your stomach. You look around frantic, trying to staunch the bleeding. This far out in the desert, a wound this deep was guaranteed to be fatal. You see your group mates all trying unsucessfully, to resist, and sharing a similar fate. It was too late, the bandits never intended to let you go from the start.',
+		'adventurer flashback: "I can do anything, from fighting robbers, to lighting fires! I\'m sure you might find some use of me"',
+		'You bitterly regret not heeding the adventurer\'s advice. You accomplished nothing, you failed to save your friends. The villagers would surely starve to death, all thanks to your blunder. ',
+		'you If I get another chance, I will never make this mistake again',
+		'You vow, resolute, even as your consciousness fades to black.',
+		'GameMaster: Oh no, looks like you died. Remember this mistake well, and learn why you needed this person! Would you like to try again? With my powers, I can make it so this never happened. You can roll back to the time, when eveything was fine. Try not to mess it up this time, human. Good luck',
+		'jump make-choices'
+	],
+	'bad-ending-2': [
+		'Your group decides to follow the path with the sun as a marker. During the nights, you attempt to follow the North star to follow a consistent pattern. However, the desert seems to have no end. You keep traveling, and eventually realize that your group, is hopelessly lost. ',
+		'cartographer flashback: "Hmmm, I\'m a bit scared of the Silk Road, but there is nobody who could give directions better than me"',
+		'You have no map, and no experience, you realize, that the cartographer was a cruicial member for your operation to be successful',
+		'Your group has run out of food, and water. Starving, and delirious with thirst, you realize you have failed your mission, because of your carelessness, not only you, but your entire village\'s life is forfeit.',
+		'you If I get another chance, I will never make this mistake again',
+		'You vow, resolute, even as your consciousness fades to black.',
+		'GameMaster: If this is your first time here, welcome. To my old friends, Welcome back! Looks like you died. Remember this mistake well, and learn why you needed this person! Would you like to try again? With my powers, I can make it so this never happened. You can roll back to the time, when eveything was fine. Try not to mess it up this time, human. Good luck',
+		'jump make-choices'
+	],
+	'bad-ending-3': [
+		'Your group panics, trying to find someone, anyone around who could help. However, you knew, with certaintly that there was no hope. ',
+		'plaguedoc flashback: "I\'m sure you might find my knowledge of poisonous herbs and their antidotes valuable"',
+		'You prayed that your group would make it without you, and still get to save your village. However, this was the end of the road for you. ',
+		'you If I get another chance, I will never make this mistake again',
+		'You vow, resolute, even as your consciousness fades to black.',
+		'GameMaster: If this is your first time here, welcome. To my old friends, Welcome back! Looks like you died. Remember this mistake well, and learn why you needed this person! Would you like to try again? With my powers, I can make it so this never happened. You can roll back to the time, when eveything was fine. Try not to mess it up this time, human. Good luck',
+		'jump make-choices'
+	],
+	'bad-ending-4': [
+		'The next day, you wander the markets, unable to determine the right prices of goods as the traders have already manipulated the market price. Everywhere you go, you see overpriced items, and you are forced to sell your spices and silks at a laughably low rate. You know you have been dealt a losing hand, however there is no further time to negotiate. ',
+		'merchant flashback: "I don\'t think it is profitable to risk my life, but if you need to know, there is nobody in the village who can better sell your goods!"',
+		'You wish you brought the merchant along. On the way back, everybody is somber. The happy mood that you started your journey with was nowhere to be found. You look at the meager food offerings you have, it is barely enough to feed the children of the village. You will be tasked with the callous task of deciding who to save, and who not to. You need to decide whose life is more precious to you, than the other. You see how severely you underestimated the Silk road. The mission did not simply end at the road. You needed someone competent to buy the goods at the right price as well. ',
+		'show scene homevillage with fadeIn',
+		'You return to your village, half starving. Your group chose to give up food so as to save a bit more for the rest of the villagers, however apart from the doctor, everybody had perished.  (scene) You look at your villagers\' eager faces. This was your family. How could you even face them with the meager offerings you managed to gather for them? There is no future for your village. You have finally failed.',
+		'GameMaster:  Welcome one, welcome all, old friends, new friends. So you have crossed the Silk Road. Would you call it a success? Well, that depends on you. Some of your villagers were saved. Were you unsatisfied with this ending? Did you want to save everyone? Well, since this is a game, and I am generous, I can give you another chance. Will you learn from your mistakes, look at what you lacked and fill the gaps? Or will you continue on other, interesting paths? The choice is yours. For now, good luck, you will need it.',
+		{
+			'Choice': {
+				'Dialog': 'Do you want to choose your characters again',
+				'Yes': {
+					'Text': 'Yes',
+					'Do': 'jump make-choices'
+				},
+				'No': {
+					'Text': 'No',
+					'Do': 'Alright!'
+				}
+			}
+		}
+	]
 
 });
