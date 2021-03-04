@@ -91,13 +91,12 @@ monogatari.assets ('scenes', {
 	'silkroad': 'silkroad-map.jpg',
 	'nightfall': 'nightfallarrives.jpg',
 	'meetinglocation': 'meetinglocation.jpg',
-	'chinesevillage': 'chinesevillage1.jpg',
+	'chinesevillage': 'chinesevillage.jpg',
 	'colddesert': 'colddesert.jpg',
 	'cooldesert': 'cooldesert.jpg',
 	'desertsunrise': 'desertsunrise.jpg',
 	'homevillage': 'homevillage.jpg',
 	'lakesights': 'lakesights.jpg',
-	'oasis': 'oasis.jpg',
 	'snakesindesert': 'snakesindesert.jpg',
 	'cave': 'cave.jpg'
 });
@@ -783,7 +782,7 @@ monogatari.script ({
 			'True': 'Thanks for taking the time out for playing this game',
 			'False': 'jump quiz-5',
 		}},
-		'Credits: Arti Vedula, Ashoka Shringla, Charan N.A, Abdul Kadir, Dhruv Mongia, Shruthi Nagarajan, Abha Ashapure, Cherie Singh, Roopal Shah'
+		'Credits: Arti Vedula, Ashoka Shringla, Charan N.A, Abdul Kadir, Dhruv Mongia, Shruthi Nagarajan, Abha Ashapure, Cherie Singh and Roopal Shah'
 	],
 	'adventure-adventurer': [
 		'show scene nightfall with fadeIn',
