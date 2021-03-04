@@ -586,13 +586,206 @@ monogatari.script ({
 			'Condition': function(){
 				return this.storage().quiz1;
 			},
-			'1': 'jump adventure-continues',
+			'1': 'jump adventure-adventurer',
 			'2': 'jump quiz-1',
 			'3': 'jump quiz-1',
 			'4': 'jump quiz-1',
 		}},
 	],
-	'adventure-continues': [
+	'quiz-2': [
+		{
+			'Choice': {
+				'Dialog': 'Quick Quiz Time: What are the 4 major contributions made to civilization by China?',
+				'A': {
+					'Text': 'Compass',
+					'Do': function() {
+						this.storage().quiz2 = false
+					}
+				},
+				'B': {
+					'Text': 'Papermaking',
+					'Do': function() {
+						this.storage().quiz2 = false
+					},
+				},
+				'C': {
+					'Text': 'Printing',
+					'Do': function() {
+						this.storage().quiz2 = false
+					},
+				},
+				'D': {
+					'Text': 'Gunpowder',
+					'Do': function() {
+						this.storage().quiz2 = false
+					},
+				},
+				'E': {
+					'Text': 'All of the above',
+					'Do': function() {
+						this.storage().quiz2 = true
+					},
+				},
+			}
+		},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz2;
+			},
+			'True': 'Congratulations! You got it.',
+			'False': 'Not quite, try again!'
+		}},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz2;
+			},
+			'True': 'jump adventure-cartographer',
+			'False': 'jump quiz-2',
+		}},
+	],
+	'quiz-3': [
+		{
+			'Choice': {
+				'Dialog': 'Quick Quiz Time: How were most goods transported via the Silk Road?',
+				'A': {
+					'Text': 'Horses',
+					'Do': function() {
+						this.storage().quiz3 = false
+					}
+				},
+				'B': {
+					'Text': 'Boats',
+					'Do': function() {
+						this.storage().quiz3 = false
+					},
+				},
+				'C': {
+					'Text': 'In a Caravan of Camels',
+					'Do': function() {
+						this.storage().quiz3 = true
+					},
+				},
+				'D': {
+					'Text': 'By Foot',
+					'Do': function() {
+						this.storage().quiz3 = false
+					},
+				},
+				'E': {
+					'Text': 'Bus',
+					'Do': function() {
+						this.storage().quiz3 = false
+					},
+				},
+			}
+		},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz3;
+			},
+			'True': 'Congratulations! You got it.',
+			'False': 'Not quite, try again!'
+		}},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz3;
+			},
+			'True': 'jump adventure-plaguedoc',
+			'False': 'jump quiz-3',
+		}},
+	],
+	'quiz-4': [
+		{
+			'Choice': {
+				'Dialog': 'Quick Quiz Time: Under which dynasty in China did the Silk Road flourish?',
+				'A': {
+					'Text': 'Tang Dynasty',
+					'Do': function() {
+						this.storage().quiz4 = true
+					}
+				},
+				'B': {
+					'Text': 'Ming Dynasty',
+					'Do': function() {
+						this.storage().quiz4 = false
+					},
+				},
+				'C': {
+					'Text': 'Song Dynasty',
+					'Do': function() {
+						this.storage().quiz4 = false
+					},
+				},
+				'D': {
+					'Text': 'Han Dynasty',
+					'Do': function() {
+						this.storage().quiz4 = false
+					},
+				},
+			}
+		},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz4;
+			},
+			'True': 'Congratulations! You got it.',
+			'False': 'Not quite, try again!'
+		}},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz4;
+			},
+			'True': 'jump adventure-merchant',
+			'False': 'jump quiz-4',
+		}},
+	],
+	'quiz-5': [
+		{
+			'Choice': {
+				'Dialog': 'Quick Quiz Time: What famous explorer is thought to have traveled along the Silk Road on his way to China?',
+				'A': {
+					'Text': 'Alexander Zimmer',
+					'Do': function() {
+						this.storage().quiz5 = false
+					}
+				},
+				'B': {
+					'Text': 'Vasco da Gama',
+					'Do': function() {
+						this.storage().quiz5 = false
+					},
+				},
+				'C': {
+					'Text': 'Marco Polo',
+					'Do': function() {
+						this.storage().quiz5 = true
+					},
+				},
+				'D': {
+					'Text': 'Abraham Lincon',
+					'Do': function() {
+						this.storage().quiz5 = false
+					},
+				},
+			}
+		},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz5;
+			},
+			'True': 'Congratulations! You got it.',
+			'False': 'Not quite, try again!'
+		}},
+		{'Conditional': {
+			'Condition': function(){
+				return this.storage().quiz5;
+			},
+			'True': 'Thanks for taking the time out for playing this game',
+			'False': 'jump quiz-5',
+		}},
+		'Credits: Arti Vedula, Ashoka Shringla, Charan N.A, Abdul Kadir, Dhruv Mongia, Shruthi Nagarajan, Abha Ashapure, Cherie Singh, Roopal Shah'
+	],
+	'adventure-adventurer': [
 		'show scene nightfall with fadeIn',
 		'Nightfall arrives: You look at the beautiful night sky, the wind whispering gently in your ear, the stars glittering, you sigh, content. You wonder why everyone was so afraid of the Silk route, it was beautiful.',
 		'show scene cave with fadeIn',
@@ -608,6 +801,9 @@ monogatari.script ({
 			'False': 'jump bad-ending-1'
 		}},
 		'You stare at your group members, startled. You were not aware that this part of the Silk road was infested by bandits. Fortunately, you decided to not take a chance with the safety of your members and brought the adventurer along with you. The adventurer quickly and efficiently dispatches the bandits, and you decide it best to move to a different resting area, for fear of attracting more dangerous animals or the bandits\' comrades. ',
+		'jump quiz-2'
+	],
+	'adventure-cartographer': [
 		'show scene colddesert with fadeIn',
 		'show character you normal at center with fadeIn',
 		'After a few days of travel, your group members finally reach the vast, cold desert, where the caravan trails end. You look helplessly at the open desert, being unable to determine which way would be the correct way to go.',
@@ -619,6 +815,9 @@ monogatari.script ({
 			'False': 'jump bad-ending-2'
 		}},
 		'However, the timid cartographer, starts to guide your group expertly through the sand dunes. You look on, relieved that you had the foresight to include the cartographer in your group. Almost no time seems to pass, before the sandy soils give way to firmer ground, and you begin to see the end in sight. ',
+		'jump quiz-3'
+	],
+	'adventure-plaguedoc': [
 		'show scene snakesindesert with fadeIn',
 		'show character you normal at center with fadeIn',
 		'Excited and energized, your group makes way across the shrubbery. In your haste, you fail to notice a nest of rattlesnakes on the ground, that you accidentally step into. It hapens so fast, there is almost no time to react, you feel yourself frothing at the mouth, and convulsing uncontrollably.',
@@ -630,6 +829,9 @@ monogatari.script ({
 			'False': 'jump bad-ending-3'
 		}},
 		'With a startling speed, the doctor whips out his bag, and applies a salve on the infected area. You feel your eyelids drooping, however under the doctor\'s expert care, you are no longer by death\'s door. Your group rests for a while, to give you a chance to regain your strength, before finally reaching the end of the road.',
+		'jump quiz-4'
+	],
+	'adventure-merchant': [
 		'show scene chinesevillage with fadeIn',
 		'In the distance, you see bells, bamboo scaffolding and slanted roofs, bearing distinct resemblance to architecture of the Wei-Lun dynasty. You had made it. You successfully reached China. You had crossed the silk road.',
 		'show character you normal at center with fadeIn',
@@ -644,7 +846,8 @@ monogatari.script ({
 		'The next day, your group wanders the markets, trying to sell your goods. The Chinese traders give you exorbitant prices, however the merchant laughs. "I am a merchant, young sirs" he curtsies exaggeratedly. "You might be able to fool a normal group, and I certainly applaud your business acumen for that, but do not try these cheap tricks on me" The merchant, in his element, drives a hard bargain, and makes sure to get your group an appropriate price.',
 		'show scene homevillage with fadeIn',
 		'show character you normal at center with fadeIn',
-		'You look in awe at all the food the merchant managed to buy. This would last your village until the summer. You were overjoyed.  Your group travels back to the village, in a jubilant mood, where the villagers are waiting. You did it. You saved them all.'
+		'You look in awe at all the food the merchant managed to buy. This would last your village until the summer. You were overjoyed.  Your group travels back to the village, in a jubilant mood, where the villagers are waiting. You did it. You saved them all.',
+		'jump quiz-5'
 	],
 	'bad-ending-1': [
 		'You look in despair at what can only be a bandit, wielding a dagger and threatening your group. None of you are proficient in combat, you did not choose the adventurer to travel with you. With a sinking heart you can only hope he leaves you alive. You can still return to your village. Your group offers all your food, silk and goods to the bandit. You turn to leave, when',
